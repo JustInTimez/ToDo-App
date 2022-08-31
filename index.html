@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <!-- Update the favicons below to represent this site better -->
-        <!-- <link rel="apple-touch-icon" sizes="180x180" href="static/images/favicon/apple-touch-icon.png">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Update the favicons below to represent this site better -->
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="static/images/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="static/images/favicon/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="static/images/favicon/favicon-16x16.png">
         <link rel="manifest" href="static/images/favicon/site.webmanifest"> -->
-        <title>Justin's To Do List App</title>
-        <meta name="description"
-            content="Created a To Do App that sllows a user to add and remove tasks">
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-        <!-- Custom CSS -->
-        <link rel="stylesheet" href="assets/css/style.css" type="text/css">
-        <!-- JavaScript -->
-        <script src="assets/javascript/logic.js" defer></script>
-        <!-- Font Awesome -->
-        <script src="https://kit.fontawesome.com/2f8b7b32b4.js" crossorigin="anonymous"></script>
-    </head>
+    <title>Justin's To Do List App</title>
+    <meta name="description" content="Created a To Do App that sllows a user to add and remove tasks">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+    <!-- JavaScript -->
+    <script src="assets/javascript/logic.js" defer></script>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/2f8b7b32b4.js" crossorigin="anonymous"></script>
+</head>
+
 <body>
     <header>
         <!-- Navbar -->
@@ -31,14 +32,60 @@
         <!-- Navbar END -->
 
         <!-- Hero -->
-        <div class="jumbotron jumbotron-fluid text-center bg-light d-flex align-items-center justify-content-center fadeIn">
+        <div
+            class="jumbotron jumbotron-fluid text-center bg-light d-flex align-items-center justify-content-center fadeIn">
             <div class="container mt-5">
-                <h1 class="mb-3 styledHeading">Tasks</h1>
-                <p class="mb-3 styledPara">...</p>
+                <h1 class="mb-3">Think of a nice heading?</h1>
+                <p class="mb-3">(some extra wording here, perhaps use for error messages etc to the user?)</p>
             </div>
         </div>
         <!-- Hero END -->
     </header>
-    
+    <main>
+        <section>
+            <div class="container-fluid bg-3 text-center p-3">
+                <p id="exp-heading" class="h2 mt-2">The Tasks?</p>
+                <div class="row">
+                    <div class="col-lg-12 shadow pt-3">
+                        <p class="h4">maybe text</p>
+                        <p class=" m-2">maybe text</p>
+                        <p class="h5 mb-4">maybe text</p>
+                        <p class="mb-1"><strong>maybe text</strong></p>
+                        <!-- Form for inputs should be here -->
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid bg-3 text-center p-3">
+                <p id="exp-heading" class="h2 mt-2">Make this section display added tasks and also make available functionality to edit/remove</p>
+                <div class="row">
+                    <div class="col-lg-12 shadow pt-3">
+                        <p class="h4">maybe text</p>
+                        <p class=" m-2">maybe text</p>
+                        <p class="h5 mb-4">maybe text</p>
+                        <p class="mb-1"><strong>maybe text</strong></p>
+                        <!-- Output list of todos here with edit and delete -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="container-fluid text-center">
+        <div class="container mt-5 pt-4">
+            <p class="lead m-4">Contact me via social:</p>
+            <div class="socialIconsContainer">
+                <a href="https://www.linkedin.com/in/justin-oosthuizen-7a49b887/" target="_blank"><img
+                        src="assets/images/socials/LinkedIN_black.png" id="linkedinIcon" alt="LinkedIn Logo"
+                        width="50px" height="50px"></a>
+                <a href="https://github.com/JustInTimez/" target="_blank"><img
+                        src="assets/images/socials/Github_black.png" id="githubIcon" alt="Github Logo" width="50px"
+                        height="50px"></a>
+                <a href="https://www.youtube.com/channel/UCRD8-wLVCJtLcrR1DqE8BkA" target="_blank"><img
+                        src="assets/images/socials/Youtube_black.png" id="youtubeIcon" alt="Youtube Logo" width="50px"
+                        height="50px"></a>
+            </div>
+        </div>
+        <p class="small">© Copyright 2022 | All Rights Reserved | JIT</p>
+    </footer>
 </body>
+
 </html>
