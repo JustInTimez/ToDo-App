@@ -9,7 +9,7 @@ function addToDo (text) {
         id: Date.now(),
     }
     todoItems.push(todo);
-    renderTodo(todo);
+    renderTasks(todo);
 };
 
 const form = document.querySelector('.todoForm');
