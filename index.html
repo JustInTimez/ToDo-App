@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Update the favicons below to represent this site better -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
@@ -33,39 +32,30 @@
 
         <!-- Hero -->
         <div
-            class="jumbotron jumbotron-fluid text-center bg-light d-flex align-items-center justify-content-center fadeIn">
-            <div class="container mt-5">
-                <h1 class="mb-3">Think of a nice heading?</h1>
-                <p class="mb-3">(some extra wording here, perhaps use for error messages etc to the user?)</p>
+            class="jumbotron jumbotron-fluid text-center bg-light d-flex align-items-center justify-content-center">
+            <div class="container mt-3">
+                <h1 class="">Think of a nice heading?</h1>
+                <p class="">(some extra wording here, perhaps use for error messages etc to the user?)</p>
             </div>
         </div>
         <!-- Hero END -->
     </header>
     <main>
         <section>
-            <div class="container-fluid bg-3 text-center p-3">
-                <p id="exp-heading" class="h2 mt-2">The Tasks?</p>
-                <div class="row">
-                    <div class="col-lg-12 shadow pt-3">
-                        <p class="h4">maybe text</p>
-                        <p class=" m-2">maybe text</p>
-                        <p class="h5 mb-4">maybe text</p>
-                        <p class="mb-1"><strong>maybe text</strong></p>
-                        <!-- Form for inputs should be here -->
-                    </div>
+            <div class="container-fluid container">
+                <h1 class="app-title">todos</h1>
+                <ul class="todo-list js-todo-list"></ul>
+                <div class="empty-state">
+                    <svg class="checklist-icon">
+                        <use href="#checklist-icon"></use>
+                    </svg>
+                    <h2 class="empty-state__title">Add your first todo</h2>
+                    <p class="empty-state__description">What do you want to get done today?</p>
                 </div>
-            </div>
-            <div class="container-fluid bg-3 text-center p-3">
-                <p id="exp-heading" class="h2 mt-2">Make this section display added tasks and also make available functionality to edit/remove</p>
-                <div class="row">
-                    <div class="col-lg-12 shadow pt-3">
-                        <p class="h4">maybe text</p>
-                        <p class=" m-2">maybe text</p>
-                        <p class="h5 mb-4">maybe text</p>
-                        <p class="mb-1"><strong>maybe text</strong></p>
-                        <!-- Output list of todos here with edit and delete -->
-                    </div>
-                </div>
+                <form class="todoForm js-form">
+                    <input autofocus type="text" aria-label="Enter a new todo item" placeholder="E.g. Build a web app"
+                        class="todoInput">
+                </form>
             </div>
         </section>
     </main>
