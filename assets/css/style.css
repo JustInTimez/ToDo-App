@@ -2,6 +2,19 @@
     box-sizing: border-box;
 }
 
+.jumbotron {
+    color: white;
+    background-image: url("../images/funny2.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 400px;
+}
+
+footer {
+    background-color: #f2f2f2;
+}
+
 #githubIcon {
     margin: 40px;
 }
