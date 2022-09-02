@@ -11,13 +11,24 @@ function addToDo (text) {
     todoItems.push(todo);
     renderTasks(todo);
 };
-// function that takes in the event listener for the checkmark click event
+
+// Function that takes in the event listener for the checkmark click event
 function toggleComplete(key) {
     const index = todoItems.findIndex(item => item.id === Number(key));
     todoItems[index].checked = !todoItems[index].checked;
     renderTasks(todoItems[index]);
 };
 
+// Function to delete items from DOM
+function deleteTodo(key) {
+    const index = todoItems.findIndex(item => item.id === Number(key));
+    const todo = {
+        deleted: true,
+        ...todoItems[index]
+    };
+    todoItems = todoItems.filter(item => item.id !== Number(key));
+    renderTasks(todo);
+}
 
 const form = document.querySelector('.todoForm');
 
@@ -34,7 +45,14 @@ form.addEventListener('submit', event => {
 });
 
 function renderTasks(todo) {
+    localStorage.setItem('rememberData', JSON.stringify(todoItems));
     const list = document.querySelector('.todo-list');
+    const item = document.querySelector(`[data-key='${todo.id}']`);
+    if (todo.deleted) {
+        item.remove();
+        if (todoItems.length === 0) list.innerHTML = '';
+        return;
+    }
     const isChecked = todo.checked ? 'completed': '';
     const liNode = document.createElement('li');
     liNode.setAttribute('class', `todo-item ${isChecked}`);
@@ -47,17 +65,24 @@ function renderTasks(todo) {
     <svg><use href=#delete-icon"></use></svg>
     </button>
     `;
-    // Append this element to the DOM by using list as reference
-    list.append(liNode);
-
+    // If item is in DOM already, either replace it so that no duplication occures or append to end of list
+    if (item) {
+        list.replaceChild(liNode, item);
+    } else {
+        list.append(liNode);
+    }
 }
 
-// Listen for and apply checkmark
+// Listen for and apply checkmark as well as delete button listener
 
 const list = document.querySelector('.js-todo-list');
 list.addEventListener('click', event => {
     if (event.target.classList.contains('js-tick')) {
         const itemKey = event.target.parentElement.dataset.key;
         toggleComplete(itemKey);
+    }
+    if (event.target.classList.contains('js-delete-todo')) {
+        const itemKey = event.target.parentElement.dataset.key;
+        deleteTodo(itemKey);
     }
 });
