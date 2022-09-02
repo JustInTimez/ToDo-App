@@ -112,7 +112,8 @@ input[type="checkbox"] {
 
 .delete-todo {
     border: none;
-    background-color: transparent;
+    /* placeholder for now. Change to an icon or something more pleasing */
+    background-color: red;
     outline: none;
     cursor: pointer;
 }
