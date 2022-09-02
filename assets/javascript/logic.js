@@ -9,6 +9,7 @@ function addToDo (text) {
         id: Date.now(),
     }
     todoItems.push(todo);
+    localStorage.setItem('rememberData', JSON.stringify(todoItems));
     renderTasks(todo);
 };
 
@@ -27,6 +28,7 @@ function deleteTodo(key) {
         ...todoItems[index]
     };
     todoItems = todoItems.filter(item => item.id !== Number(key));
+    localStorage.setItem('rememberData', JSON.stringify(todoItems));
     renderTasks(todo);
 }
 
@@ -45,7 +47,6 @@ form.addEventListener('submit', event => {
 });
 
 function renderTasks(todo) {
-    localStorage.setItem('rememberData', JSON.stringify(todoItems));
     const list = document.querySelector('.todo-list');
     const item = document.querySelector(`[data-key='${todo.id}']`);
     if (todo.deleted) {
@@ -84,5 +85,16 @@ list.addEventListener('click', event => {
     if (event.target.classList.contains('js-delete-todo')) {
         const itemKey = event.target.parentElement.dataset.key;
         deleteTodo(itemKey);
+    }
+});
+
+// Listener to Access LocalStorage and update the DOM if necessary
+document.addEventListener('DOMContentLoaded', () => {
+    const loadData = localStorage.getItem('rememberData');
+    if (loadData) {
+        todoItems = JSON.parse(loadData);
+        todoItems.forEach (r => {
+            renderTasks(r);
+        });
     }
 });
