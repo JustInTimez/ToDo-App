@@ -11,13 +11,24 @@ function addToDo (text) {
     todoItems.push(todo);
     renderTasks(todo);
 };
-// function that takes in the event listener for the checkmark click event
+
+// Function that takes in the event listener for the checkmark click event
 function toggleComplete(key) {
     const index = todoItems.findIndex(item => item.id === Number(key));
     todoItems[index].checked = !todoItems[index].checked;
     renderTasks(todoItems[index]);
 };
 
+// Function to delete items from DOM
+function deleteTodo(key) {
+    const index = todoItems.findIndex(item => item.id === Number(key));
+    const todo = {
+        deleted: true,
+        ...todoItems[index]
+    };
+    todoItems = todoItems.filter(item => item.id !== Number(key));
+    renderTasks(todo);
+}
 
 const form = document.querySelector('.todoForm');
 
@@ -34,8 +45,14 @@ form.addEventListener('submit', event => {
 });
 
 function renderTasks(todo) {
+    localStorage.setItem('rememberData', JSON.stringify(todoItems));
     const list = document.querySelector('.todo-list');
     const item = document.querySelector(`[data-key='${todo.id}']`);
+    if (todo.deleted) {
+        item.remove();
+        if (todoItems.length === 0) list.innerHTML = '';
+        return;
+    }
     const isChecked = todo.checked ? 'completed': '';
     const liNode = document.createElement('li');
     liNode.setAttribute('class', `todo-item ${isChecked}`);
