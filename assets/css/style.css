@@ -90,7 +90,7 @@ input[type="checkbox"] {
 }
 
 .tick {
-    width: 30px;
+    min-width: 30px;
     height: 30px;
     border: 3px solid #333;
     border-radius: 50%;
@@ -102,12 +102,26 @@ input[type="checkbox"] {
 
 .tick::before {
     content: '\2713';
-    font-size: 20px;
+    font-size: 30px;
     display: none;
 }
 
 .completed .tick::before {
     display: inline;
+}
+
+.edit-todo {
+    border: none;
+    /* placeholder for now. Change to an icon or something more pleasing */
+    background-color: green;
+    outline: none;
+    cursor: pointer;
+}
+
+.edit-todo svg {
+    width: 30px;
+    height: 30px;
+    pointer-events: none;
 }
 
 .delete-todo {
@@ -143,4 +157,9 @@ input[type="text"] {
 
 .todo-list:empty + .empty-state {
     display: flex;
+}
+
+#description {
+    display: flex;
+    flex-wrap: wrap;
 }

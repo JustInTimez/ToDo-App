@@ -31,8 +31,7 @@
         <!-- Navband END -->
 
         <!-- Hero -->
-        <div
-            class="jumbotron jumbotron-fluid text-center bg-light d-flex align-items-center justify-content-center">
+        <div class="jumbotron jumbotron-fluid text-center bg-light d-flex align-items-center justify-content-center">
             <div class="container mt-3">
                 <!-- <h1 class="">Think of a nice heading?</h1>
                 <p class="">(some extra wording here, perhaps use for error messages etc to the user?)</p> -->
@@ -44,18 +43,23 @@
         <section>
             <div class="container-fluid container">
                 <h1 class="app-title">View or Create To Do</h1>
-                <ul class="todo-list js-todo-list"></ul>
                 <div class="empty-state">
                     <svg class="checklist-icon">
                         <use href="#checklist-icon"></use>
                     </svg>
-                    <h2 class="empty-state__title">Add your first task to the list!</h2>
-                    <p class="empty-state__description">What are you doing today, pal?</p>
+                    <h2 class="empty-state__title">What are you doing today, pal?</h2>
+                    <p class="empty-state__description">Add your task details below, and hit <i>submit!</i></p>
                 </div>
-                <form class="todoForm js-form">
-                    <input autofocus type="text" aria-label="Enter a new todo item" placeholder="E.g. Build a web app"
-                        class="todoInput">
+                <form class="form-group row todoForm js-form mb-5">
+                    <input autofocus type="text" aria-label="Enter a new todo item" placeholder="E.g. Learn JavaScript"
+                        class="todoInput" required>
+                    <textarea class="form-control mt-3 todoDescrip" id="exampleFormControlTextarea1" rows="2"
+                        placeholder="Optionally, enter additional info if required."></textarea>
+                    <input type="date" class="todoDueDate" placeholder="Optionally, enter additional info if required.">
+                    <button type="submit" class="btn btn-dark">Submit</button>
                 </form>
+                <br>
+                <ul class="todo-list js-todo-list"></ul>
             </div>
         </section>
     </main>
@@ -77,4 +81,5 @@
         <p class="small m-0 pb-4">© Copyright 2022 | All Rights Reserved | JIT</p>
     </footer>
 </body>
+
 </html>

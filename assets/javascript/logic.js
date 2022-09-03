@@ -2,10 +2,11 @@
 let todoItems = [];
 
 // A function that will create object based on user input and push to the array above
-function addToDo (text) {
+function addToDo(text, descrip) {
     const todo = {
-        text, 
-        checked : false,
+        text,
+        descrip,
+        checked: false,
         id: Date.now(),
     }
     todoItems.push(todo);
@@ -19,8 +20,15 @@ function toggleComplete(key) {
     renderTasks(todoItems[index]);
 };
 
+// Function to edit task
+const editButton = document.querySelector('js-edit-todo');
+function editList() {}
+
+
+
 // Function to delete items from DOM
 function deleteTodo(key) {
+    localStorage.setItem('rememberData', JSON.stringify(todoItems));
     const index = todoItems.findIndex(item => item.id === Number(key));
     const todo = {
         deleted: true,
@@ -36,9 +44,11 @@ const form = document.querySelector('.todoForm');
 form.addEventListener('submit', event => {
     event.preventDefault();                 // Prevent form from trying to submit to server
     const input = document.querySelector('.todoInput');
+    const inputDescrip = document.querySelector('.todoDescrip');
     const text = input.value.trim();
-    if (text !== '') {
-        addToDo(text);
+    const descrip = inputDescrip.value.trim();
+    if (text && descrip !== '') {
+        addToDo(text, descrip);
         input.value = '';
         input.focus();
     }
@@ -53,14 +63,20 @@ function renderTasks(todo) {
         if (todoItems.length === 0) list.innerHTML = '';
         return;
     }
-    const isChecked = todo.checked ? 'completed': '';
+    const isChecked = todo.checked ? 'completed' : '';
     const liNode = document.createElement('li');
     liNode.setAttribute('class', `todo-item ${isChecked}`);
     liNode.setAttribute('data-key', todo.id);
     liNode.innerHTML = `
     <input id="${todo.id}" type="checkbox" />
     <label for="${todo.id}" class="tick js-tick"></label>
-    <span>${todo.text}</span>
+    <div id="description">
+        <span>${todo.text}</span>
+        <span>${todo.descrip}</span>
+    </div>
+    <button class="edit-todo js-edit-todo">
+    <svg><use href=#edit-icon"></use></svg>
+    </button>
     <button class="delete-todo js-delete-todo">
     <svg><use href=#delete-icon"></use></svg>
     </button>
@@ -84,5 +100,16 @@ list.addEventListener('click', event => {
     if (event.target.classList.contains('js-delete-todo')) {
         const itemKey = event.target.parentElement.dataset.key;
         deleteTodo(itemKey);
+    }
+});
+
+// Listener to Access LocalStorage and update the DOM if necessary
+document.addEventListener('DOMContentLoaded', () => {
+    const loadData = localStorage.getItem('rememberData');
+    if (loadData) {
+        todoItems = JSON.parse(loadData);
+        todoItems.forEach(r => {
+            renderTasks(r);
+        });
     }
 });
