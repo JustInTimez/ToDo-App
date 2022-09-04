@@ -69,7 +69,6 @@ svg {
 .todo-item {
     margin-bottom: 10px;
     width: 100%;
-    display: flex;
     align-items: center;
     justify-content: space-between;
 }
@@ -98,6 +97,7 @@ input[type="checkbox"] {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    z-index: 9999;
 }
 
 .tick::before {
@@ -163,3 +163,7 @@ input[type="text"] {
     display: flex;
     flex-wrap: wrap;
 }
+
+/* #dropDownContainer {
+    
+} */

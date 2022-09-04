@@ -22,9 +22,13 @@ function toggleComplete(key) {
 
 // Function to edit task
 const editButton = document.querySelector('js-edit-todo');
-function editList() {}
+function editList(edit) {
+    editButton.value = edit;
+
+    text.value = todoItems[edit];
 
 
+}
 
 // Function to delete items from DOM
 function deleteTodo(key) {
@@ -64,29 +68,44 @@ function renderTasks(todo) {
         return;
     }
     const isChecked = todo.checked ? 'completed' : '';
-    const liNode = document.createElement('li');
-    liNode.setAttribute('class', `todo-item ${isChecked}`);
-    liNode.setAttribute('data-key', todo.id);
-    liNode.innerHTML = `
-    <input id="${todo.id}" type="checkbox" />
-    <label for="${todo.id}" class="tick js-tick"></label>
-    <div id="description">
-        <span>${todo.text}</span>
-        <span>${todo.descrip}</span>
-    </div>
-    <button class="edit-todo js-edit-todo">
-    <svg><use href=#edit-icon"></use></svg>
-    </button>
-    <button class="delete-todo js-delete-todo">
-    <svg><use href=#delete-icon"></use></svg>
-    </button>
-    `;
+    const divNode = createNode(todo, isChecked);
     // If item is in DOM already, either replace it so that no duplication occures or append to end of list
     if (item) {
-        list.replaceChild(liNode, item);
+        list.replaceChild(divNode, item);
     } else {
-        list.append(liNode);
+        list.append(divNode);
     }
+}
+
+function createNode(todo, isChecked) {
+    const divNode = document.createElement('div');
+    divNode.setAttribute('class', `todo-item accordion-item ${isChecked}`);
+    divNode.setAttribute('data-key', todo.id);
+    divNode.innerHTML = `
+    <div id="dropDownContainer">
+    <input id="${todo.id}" class="accordion-button form-check-input program_checkbox" type="checkbox" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+    <label for="${todo.id}" class="tick js-tick"></label>
+    <div class="accordion" id="accordionPanelsStayOpen">
+      <h2 class="accordion accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <span>${todo.text}</span>
+        </button>
+      </h2>
+      </div>
+      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div class="accordion-body description">
+            <span>${todo.descrip}</span>
+        </div>
+      </div>
+    </div>
+    <button class="edit-todo js-edit-todo">
+        <svg><use href=#edit-icon"></use></svg>
+    </button>
+    <button class="delete-todo js-delete-todo" onclick()>
+        <svg><use href=#delete-icon"></use></svg>
+    </button>
+    `;
+    return divNode;
 }
 
 // Listen for and apply checkmark as well as delete button listener
