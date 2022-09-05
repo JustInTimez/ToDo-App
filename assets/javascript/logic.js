@@ -1,100 +1,106 @@
-// This array will hold the todo items
-let todoItems = [];
+const taskInput = document.querySelector(".task-input input"),
+    filters = document.querySelectorAll(".filters span"),
+    clearAll = document.querySelector(".clear-btn"),
+    taskBox = document.querySelector(".task-box");
 
-// A function that will create object based on user input and push to the array above
-function addToDo (text) {
-    const todo = {
-        text, 
-        checked : false,
-        id: Date.now(),
-    }
-    todoItems.push(todo);
-    localStorage.setItem('rememberData', JSON.stringify(todoItems));
-    renderTasks(todo);
-};
+let editId,
+    isEditTask = false,
+    todos = JSON.parse(localStorage.getItem("todo-list"));
 
-// Function that takes in the event listener for the checkmark click event
-function toggleComplete(key) {
-    const index = todoItems.findIndex(item => item.id === Number(key));
-    todoItems[index].checked = !todoItems[index].checked;
-    renderTasks(todoItems[index]);
-};
-
-// Function to delete items from DOM
-function deleteTodo(key) {
-    const index = todoItems.findIndex(item => item.id === Number(key));
-    const todo = {
-        deleted: true,
-        ...todoItems[index]
-    };
-    todoItems = todoItems.filter(item => item.id !== Number(key));
-    localStorage.setItem('rememberData', JSON.stringify(todoItems));
-    renderTasks(todo);
-}
-
-const form = document.querySelector('.todoForm');
-
-// Added event listener for form submit, and added some functionality to remove any white-space if left in the input field
-form.addEventListener('submit', event => {
-    event.preventDefault();                 // Prevent form from trying to submit to server
-    const input = document.querySelector('.todoInput');
-    const text = input.value.trim();
-    if (text !== '') {
-        addToDo(text);
-        input.value = '';
-        input.focus();
-    }
+filters.forEach(btn => {
+    btn.addEventListener("click", () => {
+        document.querySelector("span.active").classList.remove("active");
+        btn.classList.add("active");
+        showTodo(btn.id);
+    });
 });
 
-function renderTasks(todo) {
-    const list = document.querySelector('.todo-list');
-    const item = document.querySelector(`[data-key='${todo.id}']`);
-    if (todo.deleted) {
-        item.remove();
-        if (todoItems.length === 0) list.innerHTML = '';
-        return;
-    }
-    const isChecked = todo.checked ? 'completed': '';
-    const liNode = document.createElement('li');
-    liNode.setAttribute('class', `todo-item ${isChecked}`);
-    liNode.setAttribute('data-key', todo.id);
-    liNode.innerHTML = `
-    <input id="${todo.id}" type="checkbox" />
-    <label for="${todo.id}" class="tick js-tick"></label>
-    <span>${todo.text}</span>
-    <button class="delete-todo js-delete-todo">
-    <svg><use href=#delete-icon"></use></svg>
-    </button>
-    `;
-    // If item is in DOM already, either replace it so that no duplication occures or append to end of list
-    if (item) {
-        list.replaceChild(liNode, item);
-    } else {
-        list.append(liNode);
-    }
-}
-
-// Listen for and apply checkmark as well as delete button listener
-
-const list = document.querySelector('.js-todo-list');
-list.addEventListener('click', event => {
-    if (event.target.classList.contains('js-tick')) {
-        const itemKey = event.target.parentElement.dataset.key;
-        toggleComplete(itemKey);
-    }
-    if (event.target.classList.contains('js-delete-todo')) {
-        const itemKey = event.target.parentElement.dataset.key;
-        deleteTodo(itemKey);
-    }
-});
-
-// Listener to Access LocalStorage and update the DOM if necessary
-document.addEventListener('DOMContentLoaded', () => {
-    const loadData = localStorage.getItem('rememberData');
-    if (loadData) {
-        todoItems = JSON.parse(loadData);
-        todoItems.forEach (r => {
-            renderTasks(r);
+function showTodo(filter) {
+    let liTag = "";
+    if (todos) {
+        todos.forEach((todo, id) => {
+            let completed = todo.status == "completed" ? "checked" : "";
+            if (filter == todo.status || filter == "all") {
+                liTag += `<li class="task">
+                            <label for="${id}">
+                                <input onclick="updateStatus(this)" type="checkbox" id="${id}" ${completed}>
+                                <p class="${completed}">${todo.name}</p>
+                            </label>
+                            <div class="settings">
+                                <i onclick="showMenu(this)" class="uil uil-ellipsis-h"></i>
+                                <ul class="task-menu">
+                                    <li onclick='editTask(${id}, "${todo.name}")'><i class="uil uil-pen"></i>Edit</li>
+                                    <li onclick='deleteTask(${id}, "${filter}")'><i class="uil uil-trash"></i>Delete</li>
+                                </ul>
+                            </div>
+                        </li>`;
+            }
         });
+    }
+    taskBox.innerHTML = liTag || `<span>No tasks - please create one to get started!</span>`;
+    let checkTask = taskBox.querySelectorAll(".task");
+    !checkTask.length ? clearAll.classList.remove("active") : clearAll.classList.add("active");
+    taskBox.offsetHeight >= 300 ? taskBox.classList.add("overflow") : taskBox.classList.remove("overflow");
+}
+showTodo("all");
+
+function showMenu(selectedTask) {
+    let menuDiv = selectedTask.parentElement.lastElementChild;
+    menuDiv.classList.add("show");
+    document.addEventListener("click", e => {
+        if (e.target.tagName != "I" || e.target != selectedTask) {
+            menuDiv.classList.remove("show");
+        }
+    });
+}
+
+function updateStatus(selectedTask) {
+    let taskName = selectedTask.parentElement.lastElementChild;
+    if (selectedTask.checked) {
+        taskName.classList.add("checked");
+        todos[selectedTask.id].status = "completed";
+    } else {
+        taskName.classList.remove("checked");
+        todos[selectedTask.id].status = "pending";
+    }
+    localStorage.setItem("todo-list", JSON.stringify(todos))
+}
+
+function editTask(taskId, textName) {
+    editId = taskId;
+    isEditTask = true;
+    taskInput.value = textName;
+    taskInput.focus();
+    taskInput.classList.add("active");
+}
+
+function deleteTask(deleteId, filter) {
+    isEditTask = false;
+    todos.splice(deleteId, 1);
+    localStorage.setItem("todo-list", JSON.stringify(todos));
+    showTodo(filter);
+}
+
+clearAll.addEventListener("click", () => {
+    isEditTask = false;
+    todos.splice(0, todos.length);
+    localStorage.setItem("todo-list", JSON.stringify(todos));
+    showTodo()
+});
+
+taskInput.addEventListener("keyup", e => {
+    let userTask = taskInput.value.trim();
+    if (e.key == "Enter" && userTask) {
+        if (!isEditTask) {
+            todos = !todos ? [] : todos;
+            let taskInfo = { name: userTask, status: "pending" };
+            todos.push(taskInfo);
+        } else {
+            isEditTask = false;
+            todos[editId].name = userTask;
+        }
+        taskInput.value = "";
+        localStorage.setItem("todo-list", JSON.stringify(todos));
+        showTodo(document.querySelector("span.active").id);
     }
 });
