@@ -42,7 +42,30 @@ footer {
 }
 
 .task-input {
+  margin-bottom: 15px;
   height: 52px;
+  padding: 0 25px;
+  position: relative;
+}
+
+#submitButton {
+  width: 100%;
+  border: none;
+  opacity: 0.6;
+  outline: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 7px 13px;
+  border-radius: 4px;
+  letter-spacing: 0.3px;
+  pointer-events: none;
+  transition: transform 0.25s ease;
+  background: #e2b539;
+}
+
+.task-submit {
+  margin-bottom: 15px;
   padding: 0 25px;
   position: relative;
 }
@@ -81,7 +104,7 @@ li {
 }
 
 .controls {
-  padding: 18px 25px;
+  padding: 5px 50px 10px 50px;
   border-bottom: 1px solid #ccc;
 }
 
@@ -112,7 +135,7 @@ li {
   letter-spacing: 0.3px;
   pointer-events: none;
   transition: transform 0.25s ease;
-  background: linear-gradient(135deg, #1798fb 0%, #2D5CFE 100%);
+  background: #e2b539;
 }
 
 .clear-btn.active {
@@ -171,7 +194,7 @@ li {
 
 .task label input {
   margin-top: 7px;
-  accent-color: #3C87FF;
+  accent-color: #e2b539;
 }
 
 .task label p {
@@ -259,7 +282,7 @@ li {
   }
 
   .controls {
-    padding: 18px 20px;
+    padding: 18px 25px;
   }
 
   .task-box {
