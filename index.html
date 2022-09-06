@@ -32,25 +32,20 @@
           <a class="navbar-brand">Plan Your Day!</a>
         </nav>
         <!-- Navband END -->
-
-        <!-- Hero -->
-        <div class="jumbotron jumbotron-fluid text-center bg-light d-flex align-items-center justify-content-center">
-          <div class="container">
-          </div>
-        </div>
-        <!-- Hero END -->
       </header>
       <div class="wrapper">
         <div class="task-input">
-          <img src="assets/images/angles-right-solid.svg" width="20" height="20" alt="icon">
-          <input type="text" placeholder="Add a task to do!" required>
+          <img src="assets/images/angles-right-solid.svg" width="20" height="20" alt="icon-text">
+          <input type="text" placeholder="Add a task to do!" id="taskInput">
         </div>
+        <p id="taskNameError" class="d-none">You cannot leave this field empty</p>
         <div class="task-input">
-          <img src="assets/images/calendar-days-solid.svg" width="20" height="20" alt="icon">
-          <input placeholder="Select when you'll be finished" type="text" onfocus="(this.type='date')">
+          <img src="assets/images/calendar-days-solid.svg" width="20" height="20" alt="icon-calendar">
+          <input placeholder="Select when you'll be finished" id="task-date" type="date">
         </div>
-        <div class="task-submit">
-          <button type="submit" id="submitButton" onclick=""><i>Add it!</i></button>
+        <p id="taskDateError" class="d-none">Due date cannot be empty or in the past</p>
+        <div class="taskSubmit">
+          <button id="submitButton" onclick="createTask()"><i>Add/Update task!</i></button>
         </div>
         <div class="controls">
           <div class="filters">
@@ -65,6 +60,12 @@
     </section>
   </main>
   <footer class="container-fluid text-center">
+    <!-- Laughs Section -->
+    <div class="jumbotron jumbotron-fluid text-center bg-light d-flex align-items-center justify-content-center">
+      <div class="container">
+      </div>
+    </div>
+    <!-- Laughs Section END -->
     <div class="container mt-5 pt-4">
       <p class="lead m-2">Contact me via social:</p>
       <div class="socialIconsContainer">
