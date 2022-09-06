@@ -42,7 +42,14 @@
       <div class="wrapper">
         <div class="task-input">
           <img src="assets/images/angles-right-solid.svg" width="20" height="20" alt="icon">
-          <input type="text" placeholder="Add a new task">
+          <input type="text" placeholder="Add a task to do!" required>
+        </div>
+        <div class="task-input">
+          <img src="assets/images/calendar-days-solid.svg" width="20" height="20" alt="icon">
+          <input placeholder="Select when you'll be finished" type="text" onfocus="(this.type='date')">
+        </div>
+        <div class="task-submit">
+          <button id="submitButton" onclick=""><i>Add it!</i></button>
         </div>
         <div class="controls">
           <div class="filters">
