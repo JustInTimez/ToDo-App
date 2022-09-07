@@ -1,6 +1,6 @@
 const taskInput = document.getElementById("taskInput");
 const filters = document.querySelectorAll(".filters span");
-const clearAll = document.querySelector(".clear-btn"); 
+const clearAll = document.querySelector(".clear-btn");
 const taskBox = document.querySelector(".task-box");
 const dateInput = document.getElementById("task-date");
 
@@ -18,14 +18,13 @@ filters.forEach(btn => {
 
 function showTodo(filter) {
     let liTag = "";
-    
     if (todos) {
         todos.forEach((todo, id) => {
             let completed = todo.status == "completed" ? "checked" : "";
             let dueDateClass = "";
             let dueDate = new Date(todo.duedate);
             let now = new Date();
-            if (dueDate < now) {
+            if (now > dueDate) {
                 dueDateClass = "redText";
             }
             if (filter == todo.status || filter == "all") {
@@ -99,7 +98,7 @@ clearAll.addEventListener("click", () => {
     showTodo()
 });
 
-function checkValidation (taskText, taskDate) {
+function checkValidation(taskText, taskDate) {
     let textValid = false;
     let dateValid = false;
     if (taskText.length == 0) {
@@ -113,11 +112,11 @@ function checkValidation (taskText, taskDate) {
     } else {
         let selectedDate = new Date(taskDate);
         let now = new Date();
-        if (selectedDate < now) {
-            document.getElementById("taskDateError").classList.remove("d-none");
-        } else {
+        if (selectedDate >= now) {
             document.getElementById("taskDateError").classList.add("d-none");
             dateValid = true;
+        } else {
+            document.getElementById("taskDateError").classList.remove("d-none");
         }
     }
     if (textValid && dateValid) {
@@ -139,9 +138,9 @@ function createTask() {
         todos = !todos ? [] : todos;
         const todo = {
             name: taskText,
-            duedate: taskDate, 
+            duedate: taskDate,
             status: "pending",
-        } 
+        }
         todos.push(todo);
     } else {
         isEditTask = false;

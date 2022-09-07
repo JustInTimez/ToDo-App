@@ -5,41 +5,34 @@
   font-family: 'Poppins', sans-serif;
 }
 
-/* body {
-  width: 100%;
-  background: linear-gradient(#f0e9d8, #e2b539);
-} */
-
-html, body {
-  width: 100%;
-  height:100%;
-}
-
 body {
-    background: linear-gradient(-45deg, #F6C324, #F8CF50, #FADB7C, #FBE7A8);
-    background-size: 400% 400%;
-    animation: gradient 10s ease infinite;
+  background: linear-gradient(-45deg, #F6C324, #F8CF50, #FADB7C, #FBE7A8);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+  max-height: 100%;
+  
 }
 
 @keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-.jumbotron {
+.text {
   color: white;
-  background-image: url("../images/funny2.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: 400px;
+}
+
+.redText {
+  color: red;
 }
 
 #githubIcon {
@@ -47,7 +40,8 @@ body {
 }
 
 footer {
-  background-color: #f2f2f2;
+  background-color: #212529;
+  height: auto;
 }
 
 .errorMsg {
@@ -63,9 +57,9 @@ footer {
 }
 
 .wrapper {
-  max-width: 405px;
+  max-width: 420px;
   padding: 28px 0 30px;
-  margin: 137px auto;
+  margin: 40px auto;
   background: #fff;
   border-radius: 7px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -78,7 +72,8 @@ footer {
   position: relative;
 }
 
-.task-input, .taskSubmit {
+.task-input,
+.taskSubmit {
   font-style: italic;
   margin-bottom: 18px;
   height: 52px;
@@ -295,6 +290,8 @@ li {
   padding-right: 8px;
 }
 
+
+/* Responsive query for app */
 @media (max-width: 400px) {
   body {
     padding: 0 10px;
@@ -325,8 +322,4 @@ li {
   .task label input {
     margin-top: 4px;
   }
-}
-
-.redText {
-  color: red;
 }
