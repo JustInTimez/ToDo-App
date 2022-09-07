@@ -6,17 +6,33 @@
 }
 
 body {
-  width: 100%;
-  background: linear-gradient(#f0e9d8, #e2b539);
+  background: linear-gradient(-45deg, #F6C324, #F8CF50, #FADB7C, #FBE7A8);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+  max-height: 100%;
+  
 }
 
-.jumbotron {
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.text {
   color: white;
-  background-image: url("../images/funny2.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: 400px;
+}
+
+.redText {
+  color: red;
 }
 
 #githubIcon {
@@ -24,18 +40,26 @@ body {
 }
 
 footer {
-  background-color: #f2f2f2;
+  background-color: #212529;
+  height: auto;
+}
+
+.errorMsg {
+  margin-bottom: 0px;
+  color: red;
+  text-align: center;
+  font-size: 13px;
 }
 
 ::selection {
   color: #fff;
-  background: #e2b539;
+  background: #FFD700;
 }
 
 .wrapper {
-  max-width: 405px;
+  max-width: 420px;
   padding: 28px 0 30px;
-  margin: 137px auto;
+  margin: 40px auto;
   background: #fff;
   border-radius: 7px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -48,17 +72,20 @@ footer {
   position: relative;
 }
 
-.task-input, .taskSubmit {
-  margin-bottom: 15px;
+.task-input,
+.taskSubmit {
+  font-style: italic;
+  margin-bottom: 18px;
   height: 52px;
   padding: 0 25px;
   position: relative;
 }
 
 #submitButton {
+  font-weight: 600;
   width: 100%;
   border: none;
-  opacity: 0.6;
+  opacity: 0.9;
   outline: none;
   color: #fff;
   cursor: pointer;
@@ -69,13 +96,6 @@ footer {
   transition: transform 0.25s ease;
   background: #e2b539;
 }
-
-/* .taskSubmit {
-  margin-bottom: 15px;
-  height: 52px;
-  padding: 0 25px;
-  position: relative;
-} */
 
 .task-input img {
   top: 50%;
@@ -183,7 +203,6 @@ li {
   list-style: none;
   font-size: 17px;
   margin-bottom: 18px;
-  padding-bottom: 16px;
   align-items: flex-start;
   border-bottom: 1px solid #ccc;
 }
@@ -271,6 +290,8 @@ li {
   padding-right: 8px;
 }
 
+
+/* Responsive query for app */
 @media (max-width: 400px) {
   body {
     padding: 0 10px;
@@ -301,8 +322,4 @@ li {
   .task label input {
     margin-top: 4px;
   }
-}
-
-.redText {
-  color: red;
 }
