@@ -100,33 +100,33 @@ clearAll.addEventListener("click", () => {
     showTodo()
 });
 
-// function checkValidation (taskText, taskDate) {
-//     let textValid = false;
-//     let dateValid = false;
-//     if (taskText.length == 0) {
-//         document.getElementById("taskNameError").classList.remove("d-none");
-//     } else {
-//         document.getElementById("taskNameError").classList.add("d-none");
-//         textValid = true;
-//     }
-//     if (taskDate.length == 0) {
-//         document.getElementById("taskDateError").classList.remove("d-none");
-//     } else {
-//         let selectedDate = new Date(taskDate);
-//         let now = new Date();
-//         if (selectedDate < now) {
-//             document.getElementById("taskDateError").classList.remove("d-none");
-//         } else {
-//             document.getElementById("taskDateError").classList.add("d-none");
-//             dateValid = true;
-//         }
-//     }
-//     if (textValid && dateValid) {
-//         return true;
-//     } else {
-//         return false;
-//     }
-// }
+function checkValidation (taskText, taskDate) {
+    let textValid = false;
+    let dateValid = false;
+    if (taskText.length == 0) {
+        document.getElementById("taskNameError").classList.remove("d-none");
+    } else {
+        document.getElementById("taskNameError").classList.add("d-none");
+        textValid = true;
+    }
+    if (taskDate.length == 0) {
+        document.getElementById("taskDateError").classList.remove("d-none");
+    } else {
+        let selectedDate = new Date(taskDate);
+        let now = new Date();
+        if (selectedDate < now) {
+            document.getElementById("taskDateError").classList.remove("d-none");
+        } else {
+            document.getElementById("taskDateError").classList.add("d-none");
+            dateValid = true;
+        }
+    }
+    if (textValid && dateValid) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 // No need to use preventDefault() as this fires on the submit button click and is not attached to a form
 function createTask() {
