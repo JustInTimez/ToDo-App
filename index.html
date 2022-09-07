@@ -33,19 +33,21 @@
         </nav>
         <!-- Navband END -->
       </header>
+      <!-- App area starts here -->
       <div class="wrapper">
         <div class="task-input">
           <img src="assets/images/angles-right-solid.svg" width="20" height="20" alt="icon-text">
           <input type="text" placeholder="Add a task to do!" id="taskInput">
+          <p id="taskNameError" class="d-none errorMsg">You forgot to enter your task!</p>
         </div>
-        <p id="taskNameError" class="d-none">You cannot leave this field empty</p>
+
         <div class="task-input">
           <img src="assets/images/calendar-days-solid.svg" width="20" height="20" alt="icon-calendar">
           <input placeholder="Select when you'll be finished" id="task-date" type="date">
+          <p id="taskDateError" class="d-none errorMsg">Date cannot be empty or in the past</p>
         </div>
-        <p id="taskDateError" class="d-none">Due date cannot be empty or in the past</p>
         <div class="taskSubmit">
-          <button id="submitButton" onclick="createTask()"><i>Add/Update task!</i></button>
+          <button id="submitButton" onclick="createTask()">Add/Update task!</button>
         </div>
         <div class="controls">
           <div class="filters">
@@ -57,15 +59,10 @@
         </div>
         <ul class="task-box"></ul>
       </div>
+      <!-- App area END -->
     </section>
   </main>
   <footer class="container-fluid text-center">
-    <!-- Laughs Section -->
-    <div class="jumbotron jumbotron-fluid text-center bg-light d-flex align-items-center justify-content-center">
-      <div class="container">
-      </div>
-    </div>
-    <!-- Laughs Section END -->
     <div class="container mt-5 pt-4">
       <p class="lead m-2">Contact me via social:</p>
       <div class="socialIconsContainer">

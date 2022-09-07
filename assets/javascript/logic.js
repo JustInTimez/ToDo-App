@@ -83,7 +83,6 @@ function editTask(taskId, textName, dateName) {
     taskInput.focus();
     taskInput.classList.add("active");
     dateInput.value = dateName;
-    console.log(dateName);
 }
 
 function deleteTask(deleteId, filter) {
