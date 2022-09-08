@@ -92,10 +92,10 @@ function showTodo(filter) {
             }
         });
     }
-    taskBox.innerHTML = liTag || `<span>No tasks - please create one to get started!</span>`;
+    taskBox.innerHTML = liTag || `<span id="noTasksMsg">No tasks - please create one to get started!</span>`;
     let checkTask = taskBox.querySelectorAll(".task");
     !checkTask.length ? clearAll.classList.remove("active") : clearAll.classList.add("active");
-    taskBox.offsetHeight >= 300 ? taskBox.classList.add("overflow") : taskBox.classList.remove("overflow");
+    taskBox.offsetHeight >= 200 ? taskBox.classList.add("overflow") : taskBox.classList.remove("overflow");
 }
 showTodo("all");
 
