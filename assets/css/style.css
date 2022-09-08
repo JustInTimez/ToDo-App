@@ -10,7 +10,7 @@ body {
   background-size: 400% 400%;
   animation: gradient 10s ease infinite;
   max-height: 100%;
-  
+
 }
 
 @keyframes gradient {
@@ -41,7 +41,7 @@ body {
 
 footer {
   background-color: #212529;
-  height: auto;
+  padding-bottom: 5px;
 }
 
 .errorMsg {
@@ -292,13 +292,13 @@ li {
 
 
 /* Responsive query for app */
-@media (max-width: 400px) {
-  body {
+@media (max-width: 424px) {
+  #appArea {
     padding: 0 10px;
   }
 
   .wrapper {
-    padding: 20px 0;
+    padding: 20px 0px;
   }
 
   .filters span {
