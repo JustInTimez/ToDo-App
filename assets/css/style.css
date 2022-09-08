@@ -9,8 +9,6 @@ body {
   background: linear-gradient(-45deg, #F6C324, #F8CF50, #FADB7C, #FBE7A8);
   background-size: 400% 400%;
   animation: gradient 10s ease infinite;
-  max-height: 100%;
-  
 }
 
 @keyframes gradient {
@@ -27,6 +25,27 @@ body {
   }
 }
 
+#navHeading {
+  margin: 0 auto;
+}
+
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+#content-wrap {
+  padding-bottom: 221px;
+  /* Footer height */
+}
+
+footer {
+  background-color: #212529;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
 .text {
   color: white;
 }
@@ -36,12 +55,7 @@ body {
 }
 
 #githubIcon {
-  margin: 40px;
-}
-
-footer {
-  background-color: #212529;
-  height: auto;
+  margin: 20px;
 }
 
 .errorMsg {
@@ -182,7 +196,7 @@ li {
 
 .task-box.overflow {
   overflow-y: auto;
-  max-height: 300px;
+  max-height: 200px;
 }
 
 .task-box::-webkit-scrollbar {
@@ -216,6 +230,9 @@ li {
 .task-box .task label {
   display: flex;
   align-items: flex-start;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .task label input {
@@ -226,7 +243,8 @@ li {
 .task label p {
   user-select: none;
   margin-left: 12px;
-  word-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
 }
 
 .task label p.checked {
@@ -235,6 +253,7 @@ li {
 
 .task-box .settings {
   position: relative;
+  margin-left: 8px;
 }
 
 .settings :where(i, li) {
@@ -290,15 +309,19 @@ li {
   padding-right: 8px;
 }
 
+#noTasksMsg {
+  display: block;
+  text-align: center;
+}
 
 /* Responsive query for app */
-@media (max-width: 400px) {
-  body {
+@media (max-width: 424px) {
+  #appArea {
     padding: 0 10px;
   }
 
   .wrapper {
-    padding: 20px 0;
+    padding: 20px 0px;
   }
 
   .filters span {
