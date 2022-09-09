@@ -48,7 +48,7 @@ function erase() {
     }
 };
 
-document.addEventListener("DOMContentLoaded", function () {    // On DOM Load, initiate the effect
+document.addEventListener("DOMContentLoaded", function () {    // On DOM Load, initiate the effect of typing at the top of the page
     if (textArray.length) setTimeout(type, newTextDelay + 100);
 });
 
@@ -64,6 +64,7 @@ filters.forEach(btn => {
     });
 });
 
+// Filter function for tasks present in the task display area / show message if no tasks are present
 function showTodo(filter) {
     let liTag = "";
     if (todos) {
@@ -99,6 +100,7 @@ function showTodo(filter) {
 }
 showTodo("all");
 
+// This function controls the small menu to edit/delete actions on tasks
 function showMenu(selectedTask) {
     let menuDiv = selectedTask.parentElement.lastElementChild;
     menuDiv.classList.add("show");
@@ -109,6 +111,7 @@ function showMenu(selectedTask) {
     });
 }
 
+// This function controls the status of a task - pending (un-checked, still in progress) or checked (completed) and saves to storage
 function updateStatus(selectedTask) {
     let taskName = selectedTask.parentElement.lastElementChild;
     if (selectedTask.checked) {
@@ -148,6 +151,7 @@ clearAll.addEventListener("click", () => {
     showTodo()
 });
 
+// Validation to check that something has been entered ini the fields, and applies classes that show and hide error text
 function checkValidation(taskText, taskDate) {
     let textValid = false;
     let dateValid = false;
@@ -177,6 +181,7 @@ function checkValidation(taskText, taskDate) {
     }
 }
 
+// Runs onclick of the submit button
 // No need to use preventDefault() as this fires on the submit button click and is not attached to a form
 function createTask() {
     let taskText = taskInput.value.trim();
