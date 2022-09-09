@@ -10,18 +10,19 @@ Mobile friendly.
 * User is able to edit existing tasks.
 * User is able to delete tasks.
 * The application has access to localStorage (JSON), and will update the localStorage after actions are performed.
-* The application has validatioon included to check that inputs are not empty, and that a valid date has been selected. You cannot add a task to the past, only for the same day and beyond. You will not be able to add a task unless those validations pass.
+* The application has validation included to check that inputs are not empty, and that a valid date has been selected. You cannot add a task to the past, only for the same day and beyond. You will not be able to add a task unless those validations pass.
+* When the date for a task has passed, task due date will be highlited in red to alert the user.
 
 ## Using the SPA
 
 * Open index.html
-* Page renders, and user is presented with the app in the center of the screen.
+* Page renders, and the user is presented with the app in the center of the viewport.
 * User needs to enter task info into first text field, and then select the date which the user wants to be completed by.
 * User adds the current task to the app, by clicking on the yellow button right after selecting the due date.
-* Should the user pass validation (no empty selections, and not selecting a date in the past) their task will be outputted into the tasks list to see.
+* Should the user pass validation (no empty selections, and not selecting a date in the past) their task will be outputted into the tasks list to be viewable.
 * Filtering can be used to track/see All tasks, Pending tasks and Completed tasks.
-* User has the option to edit/delete task details but clicking on the three dots to the right of the entry. 
-* Closing the browser or closing the tab will not cause your tasks to disappear - localStorage has been used to store and retrieve data (JSON).
+* User has the option to edit/delete task details by clicking on the three dots to the right of the entry. 
+* Closing the browser or the tab will not destroy your tasks - localStorage has been used to store and retrieve data (JSON).
 * Should the user need to remove all added tasks, regardless of count, all tasks may be removed (and from localStorage) by clicking on the CTA button "Clear All".
 
 ### Dependencies
