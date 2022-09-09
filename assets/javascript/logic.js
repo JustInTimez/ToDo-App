@@ -71,7 +71,7 @@ function showTodo(filter) {
             let completed = todo.status == "completed" ? "checked" : "";
             let dueDateClass = "";
             let dueDate = new Date(todo.duedate);
-            let now = new Date();
+            let now = new Date().setHours(0);
             if (now > dueDate) {
                 dueDateClass = "redText";
             }
@@ -161,7 +161,8 @@ function checkValidation(taskText, taskDate) {
         document.getElementById("taskDateError").classList.remove("d-none");
     } else {
         let selectedDate = new Date(taskDate);
-        let now = new Date();
+        let now = new Date().setHours(0);
+        console.log(now, selectedDate);
         if (selectedDate >= now) {
             document.getElementById("taskDateError").classList.add("d-none");
             dateValid = true;
