@@ -165,18 +165,18 @@ li {
 }
 
 .controls .clear-btn {
-  border: none;
-  opacity: 0.6;
+  border: solid;
   outline: none;
-  color: #fff;
+  color: #e4bc4c;
   cursor: pointer;
   font-size: 13px;
-  padding: 7px 13px;
+  font-weight: 600;
+  padding: 5px 11px;
   border-radius: 4px;
   letter-spacing: 0.3px;
   pointer-events: none;
   transition: transform 0.25s ease;
-  background: #e2b539;
+  background: white;
 }
 
 .clear-btn.active {
@@ -243,7 +243,7 @@ li {
 .task label p {
   user-select: none;
   margin-left: 12px;
-  word-break: break-all;
+  word-break: normal;
   white-space: normal;
 }
 
