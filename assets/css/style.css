@@ -315,6 +315,7 @@ li {
 }
 
 /* Responsive query for app */
+
 @media (max-width: 424px) {
   #appArea {
     padding: 0 10px;
